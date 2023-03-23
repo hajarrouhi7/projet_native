@@ -1,0 +1,29 @@
+.nav{
+    width: 100vw;
+    padding-left: 15px;
+    background-color: #73a942;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.bodyNav{
+    font-weight: 500;
+}
+.bodyNav:hover{
+    color: white;
+
+}
+.menu{
+    margin-bottom: 5px;
+}
+.sideBar{
+    background-color: #aad576;
+    color: white;
+}
+.header{
+    margin-left: auto;
+}
+.text{
+    color: white;
+}
+.text:hover{
+    color: rgb(88, 87, 87);
+}
