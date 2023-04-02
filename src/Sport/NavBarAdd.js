@@ -6,53 +6,26 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import IconButton from '@mui/material/IconButton';
-import RoofingRoundedIcon from '@mui/icons-material/RoofingRounded';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import WebIcon from '@mui/icons-material/Web';
+import LogoutIcon from '@mui/icons-material/Logout';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
 
-const NavBar = () => {
+
+const NavBarAdd = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const nav=[
-        {   
-            id:1,
-            title:"Home",
-            icon:<RoofingRoundedIcon/>,
-            href:"./Home",
-        },
-        {   
-            id:2,
-            title:"Search",
-            icon:<SearchRoundedIcon/>,
-            href:"./Search",
-        },
-        {   
-            id:3,
-            title:"Card Book",
-            icon:<GridViewRoundedIcon/>,
-            href:"",
-        },
-    ];
-    const sign=[
-        {   
-            id:1,
-            title:"Sign Up",
-            icon:<PersonAddAlt1RoundedIcon/>,
-            href:"./SignUp",
-        },
-        {   
-            id:2,
-            title:"Sign In",
-            icon:<AccountCircleRoundedIcon/>,
-            href:"./SignIn",
-        },
+        {  id:1, title:"Dashboard", icon:<GridViewRoundedIcon/>, href:"", },
+        {  id:2, title:"View", icon:<WebIcon/>, href:"", },
+        {  id:3, title:"Book", icon:<BookmarkIcon/>, href:"./ListBooked", },
+        {  id:4, title:"Users", icon:<AccountCircleIcon/>, href:"./ListUsers", },
     ];
     return (
         <div>
@@ -79,14 +52,12 @@ const NavBar = () => {
                 </Offcanvas.Body>
                 <Container>
                 <List  className='footer'>
-                {sign.map((text, index) => (
-                    <ListItemButton key={index.id} href={text.href}>
+                    <ListItemButton href="./Admin">
                         <ListItemIcon style={{color:'white'}}>
-                        {text.icon}
+                            <LogoutIcon/>
                         </ListItemIcon>
-                        <ListItemText className='text' primary={text.title} />
+                        <ListItemText className='text' primary="Disconnected" />
                     </ListItemButton>
-                ))}
                 </List>
                 </Container>
             </Offcanvas>
@@ -94,4 +65,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar;
+export default NavBarAdd;
