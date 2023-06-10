@@ -1,4 +1,5 @@
-import * as React from 'react';
+
+import {React,useState,useRef} from 'react'
 import './SignUp.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,6 +14,10 @@ import Grid from '@mui/material/Grid';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import {useNavigate } from "react-router-dom";
+
+
 
 function Copyright(props) {
   return (
@@ -29,16 +34,57 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default class SignIn extends React.Component {
-  render(){
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-      });
-    };
+
+const SignIn = () => {
+  const route = useNavigate()
+    const[email,setEmail]= useState('')
+    const[password,setPassword]= useState('')
+
+    const [data,setData] =useState([])
+    const [color1,setColor1] = useState("")
+    const [foc,setFoc] = useState(false)
+    const [isValid1,setIsValid1] = useState(false)
+  
+  
+  
+    const handleSubmit =()=>{
+      const obj ={
+        "EmailAddress": email,
+        "Password" :password,
+      } 
+        axios.post("http://127.0.0.1:8000/api/client/search",obj).then((response)=>{
+      if ( response.data.result.length  >0){
+        sessionStorage.setItem("Client",JSON.stringify(response.data.result))
+        route('/Search') 
+      }else{
+        console.log('non y a pas') ; //model afficher
+      } 
+          
+     })
+      
+
+    }
+    const handlemail = (e) =>{
+      if (e.length >=4 && (/(.+)@(.+){2,}\.(.+){3}/).test(e) ){
+        setFoc(true)
+        setEmail(e)
+        setIsValid1(false)
+        setColor1('success')
+      }else{
+        setFoc(true)
+        setIsValid1(true)
+        setColor1('')
+      }
+    }
+      
+    // axios.get("").then((response)=>{
+    //   console.log(response.data);
+    //   setData(response.data)
+    // })
+    // axios.post("http://127.0.0.1:8000/signUp",obj).then((response)=>{
+    //   console.log(response);
+    // })
+  
     return (
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '100vh' }}>
@@ -52,11 +98,11 @@ export default class SignIn extends React.Component {
               <Typography component="h1" variant="h5">
                 Sign in
               </Typography>
-              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                  <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
-                  <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+              <Box component="form" noValidate sx={{ mt: 1 }}>
+                  <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus color={color1}  error={isValid1} onChange={(e)=>{handlemail(e.target.value)}} />
+                  <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password"  autoComplete="current-password" onChange={(e)=>{setPassword(e.target.value)}} /> 
                 <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                <Button type="submit" fullWidth id='btn' sx={{ mt: 3, mb: 2 }} href='./Home'>
+                <Button type="button" fullWidth id='btn' sx={{ mt: 3, mb: 2 }} href='' onClick={handleSubmit}>
                   Sign In
                 </Button>
                 <Grid container>
@@ -78,5 +124,5 @@ export default class SignIn extends React.Component {
         </Grid>
       </ThemeProvider>
     );
-  }
 }
+export default SignIn;

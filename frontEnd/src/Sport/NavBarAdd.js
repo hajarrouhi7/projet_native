@@ -22,10 +22,9 @@ const NavBarAdd = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const nav=[
-        {  id:1, title:"Dashboard", icon:<GridViewRoundedIcon/>, href:"", },
-        {  id:2, title:"View", icon:<WebIcon/>, href:"", },
-        {  id:3, title:"Book", icon:<BookmarkIcon/>, href:"./ListBooked", },
-        {  id:4, title:"Users", icon:<AccountCircleIcon/>, href:"./ListUsers", },
+        {  id:1, title:"View", icon:<WebIcon/>, href:"./ListViewed", },
+        {  id:2, title:"Book", icon:<BookmarkIcon/>, href:"./ListBooked", },
+        {  id:3, title:"Users", icon:<AccountCircleIcon/>, href:"./ListUsers", },
     ];
     return (
         <div>

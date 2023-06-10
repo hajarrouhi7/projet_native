@@ -10,7 +10,7 @@ function Home() {
               <div className='col-2' >
               < NavBar />
               </div>
-              <div className='col-10 position-absolute top-50 start-50 translate-middle'style={{paddingTop:'.2vh'}}  >
+              <div className='col-10'style={{paddingTop:'39vh',paddingRight:'15vw'}}  >
                 <div >
                 <h2> SEARCH A PLACE TO PRACTICE SPORTS</h2>
                 </div>

@@ -22,7 +22,7 @@ const Admin = () => {
           //  user === "Admin" && password === "123" ? sessionStorage.setItem('admin',"true") && route("/Dashboard") : setMsg("كلمة المرور غير صحيحة")
           if (user === "Admin" && password === "123") {
               sessionStorage.setItem('admin', "true")
-              route("/ListBooked")
+              route("/ListViewed")
           } else setMsg('the wrong password')
   
       }
